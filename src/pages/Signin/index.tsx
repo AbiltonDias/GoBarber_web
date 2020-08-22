@@ -4,7 +4,7 @@ import * as Yup from 'yup';
 import { FormHandles } from '@unform/core';
 import { Form } from '@unform/web';
 
-import { useAuth } from '../../context/AuthContext';
+import { useAuth } from '../../hooks/AuthContext';
 
 import getValidationErrors from '../../utils/getValidationErrors';
 import { Container, Content, Background } from './styles';
@@ -44,9 +44,13 @@ const Signin: React.FC = () => {
         password: data.password,
       });
     } catch (error) {
-      const errors = getValidationErrors(error);
+      if(error instanceof Yup.ValidationError){
+        const errors = getValidationErrors(error);
 
-      formRef.current?.setErrors(errors);
+        formRef.current?.setErrors(errors);
+      }
+
+      //ToastContainer
     }
   }, [signIn]);
 
