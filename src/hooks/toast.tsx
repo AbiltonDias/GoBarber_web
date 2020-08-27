@@ -3,7 +3,7 @@ import { uuid } from 'uuidv4';
 
 import ToastContainer from '../components/ToastContainer';
 
-interface ToastMessage {
+export interface ToastMessage {
   id: string;
   type?: 'sucess' | 'error' | 'info';
   title: string;
